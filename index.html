@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prolog Chef SE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="#">
+            <span class="brand-icon">🍃</span>
+            <span>Prolog Chef SE</span>
+        </a>
+
+        <nav>
+            <a class="nav-link active" href="#recomendador">
+                🍴 Recomendador
+            </a>
+            <a class="nav-link" href="#como-funciona">
+                Base de conocimiento
+            </a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <span class="eyebrow">
+                ⚡ Inferencia lógica en tiempo real
+            </span>
+
+            <h1>Sistema Experto de<br>Recetas de Cocina</h1>
+
+            <p>
+                Selecciona los ingredientes que tienes en tu cocina
+                y define tus restricciones alimentarias. Nuestro
+                motor evaluará las reglas de Prolog para recomendarte
+                un platillo.
+            </p>
+        </section>
+
+        <section class="panel" id="recomendador">
+            <div class="panel-heading">
+                <div>
+                    <h2>🧺 Ingredientes disponibles</h2>
+                    <p>Selecciona los ingredientes que tienes.</p>
+                </div>
+
+                <button class="text-button" id="clear-ingredients"
+                        type="button">
+                    Desmarcar todos
+                </button>
+            </div>
+
+            <div class="ingredient-grid" id="ingredients">
+
+                <label class="ingredient">
+                    <input type="checkbox" value="pollo">
+                    <span>🍗 Pollo</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="huevo">
+                    <span>🥚 Huevo</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="arroz">
+                    <span>🍚 Arroz</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="tomate">
+                    <span>🍅 Tomate</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="cebolla">
+                    <span>🧅 Cebolla</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="queso">
+                    <span>🧀 Queso</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="pasta">
+                    <span>🍝 Pasta</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="frijoles">
+                    <span>🫘 Frijoles</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="papa">
+                    <span>🥔 Papa</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="zanahoria">
+                    <span>🥕 Zanahoria</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="leche">
+                    <span>🥛 Leche</span>
+                </label>
+
+                <label class="ingredient">
+                    <input type="checkbox" value="tortilla">
+                    <span>🫓 Tortilla</span>
+                </label>
+
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="panel-heading">
+                <div>
+                    <h2>🥗 Restricciones alimentarias</h2>
+                    <p>Selecciona las que quieras respetar.</p>
+                </div>
+            </div>
+
+            <div class="restriction-grid" id="restrictions">
+
+                <label class="restriction">
+                    <input type="checkbox" value="vegetariano">
+                    <span>Vegetariano</span>
+                </label>
+
+                <label class="restriction">
+                    <input type="checkbox" value="sin_lactosa">
+                    <span>Sin lactosa</span>
+                </label>
+
+                <label class="restriction">
+                    <input type="checkbox" value="sin_gluten">
+                    <span>Sin gluten</span>
+                </label>
+
+                <label class="restriction">
+                    <input type="checkbox" value="sin_huevo">
+                    <span>Sin huevo</span>
+                </label>
+
+            </div>
+
+            <button class="primary-button" id="recommend" type="button">
+                ✨ Recomendar una receta
+            </button>
+
+            <p class="small-note">
+                Sistema experto de recetas basado en reglas de Prolog.
+            </p>
+        </section>
+
+        <section class="result panel" id="result" hidden>
+            <div class="result-icon">🍽️</div>
+
+            <div>
+                <h2 id="result-title">Tu recomendación</h2>
+                <p id="result-message"></p>
+                <ul id="result-details"></ul>
+            </div>
+        </section>
+
+        <section class="info-card" id="como-funciona">
+            <div class="info-symbol">♧</div>
+
+            <div>
+                <h2>¿Cómo funciona?</h2>
+                <p>
+                    El sistema recibe los ingredientes y las restricciones,
+                    consulta su base de conocimiento y aplica reglas lógicas
+                    para buscar recetas compatibles.
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            Prolog Chef SE · Sistema experto de recetas de cocina
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
