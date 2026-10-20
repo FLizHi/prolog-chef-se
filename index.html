@@ -1,195 +1,93 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prolog Chef SE</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prolog Chef SE - Sistema Experto de Recetas</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="topbar">
-        <a class="brand" href="#">
-            <span class="brand-icon">🍃</span>
-            <span>Prolog Chef SE</span>
-        </a>
+  <header class="navbar">
+    <div class="logo">
+      <span class="icon">🍳</span>
+      <h1>Prolog Chef <span>SE</span></h1>
+    </div>
+    <span class="badge">Sistema Experto Lógico</span>
+  </header>
 
-        <nav>
-            <a class="nav-link active" href="#recomendador">
-                🍴 Recomendador
-            </a>
-            <a class="nav-link" href="#como-funciona">
-                Base de conocimiento
-            </a>
-        </nav>
-    </header>
+  <main class="container">
+    
+    <section class="panel shadow">
+      <h2>1. Selecciona tus Ingredientes Disponibles</h2>
+      <p class="subtitle">Haz clic en los ingredientes que tienes en tu cocina:</p>
+      
+      <div class="ingredients-grid" id="ingredientsContainer">
+        <button type="button" class="chip" data-val="tortillas_de_harina">Tortillas de Harina</button>
+        <button type="button" class="chip" data-val="tortillas_de_maiz">Tortillas de Maíz</button>
+        <button type="button" class="chip" data-val="quesillo_deshebrado">Quesillo Deshebrado</button>
+        <button type="button" class="chip" data-val="queso_gouda">Queso Gouda</button>
+        <button type="button" class="chip" data-val="queso_asadero">Queso Asadero</button>
+        <button type="button" class="chip" data-val="queso_panela">Queso Panela</button>
+        <button type="button" class="chip" data-val="pollo_deshebrado">Pollo Deshebrado</button>
+        <button type="button" class="chip" data-val="pollo_asado">Pollo Asado</button>
+        <button type="button" class="chip" data-val="pollo_rostizado">Pollo Rostizado</button>
+        <button type="button" class="chip" data-val="epazote_fresco">Epazote Fresco</button>
+        <button type="button" class="chip" data-val="salsa_de_tomate">Salsa de Tomate</button>
+        <button type="button" class="chip" data-val="pepperoni">Pepperoni</button>
+        <button type="button" class="chip" data-val="vegetales_salteados">Vegetales Salteados</button>
+        <button type="button" class="chip" data-val="tostadas">Tostadas</button>
+        <button type="button" class="chip" data-val="dos_jitomates">Dos Jitomates</button>
+        <button type="button" class="chip" data-val="caja_de_caldillo_de_tomate">Caldillo de Tomate</button>
+        <button type="button" class="chip" data-val="cebolla_en_rodajas">Cebolla en Rodajas</button>
+        <button type="button" class="chip" data-val="un_chile_chipotle">Chile Chipotle</button>
+        <button type="button" class="chip" data-val="crema">Crema</button>
+        <button type="button" class="chip" data-val="lechuga">Lechuga</button>
+      </div>
 
-    <main class="container">
+      <hr class="divider">
 
-        <section class="hero">
-            <span class="eyebrow">
-                ⚡ Inferencia lógica en tiempo real
-            </span>
+      <h2>2. Filtros y Restricciones Alimentarias</h2>
+      <div class="filters-grid">
+        <div class="filter-group">
+          <label for="momento">Momento del Día:</label>
+          <select id="momento">
+            <option value="cualquiera">Cualquiera</option>
+            <option value="desayuno">Desayuno</option>
+            <option value="comida">Comida</option>
+            <option value="cena">Cena</option>
+          </select>
+        </div>
 
-            <h1>Sistema Experto de<br>Recetas de Cocina</h1>
+        <div class="filter-group">
+          <label for="restriccion">Seguridad Alimentaria / Dieta:</label>
+          <select id="restriccion">
+            <option value="ninguna">Sin Restricciones</option>
+            <option value="sin_carne">Vegetariano (Sin Carne)</option>
+            <option value="sin_lacteos">Sin Lácteos (Intolerante a Lactosa)</option>
+          </select>
+        </div>
+      </div>
 
-            <p>
-                Selecciona los ingredientes que tienes en tu cocina
-                y define tus restricciones alimentarias. Nuestro
-                motor evaluará las reglas de Prolog para recomendarte
-                un platillo.
-            </p>
-        </section>
+      <button id="btnConsultar" class="btn-primary">
+        🔍 Consultar Motor Lógico Prolog
+      </button>
+    </section>
 
-        <section class="panel" id="recomendador">
-            <div class="panel-heading">
-                <div>
-                    <h2>🧺 Ingredientes disponibles</h2>
-                    <p>Selecciona los ingredientes que tienes.</p>
-                </div>
+    <section class="panel shadow">
+      <h2>3. Recomendaciones del Sistema Experto</h2>
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Ejecutando inferencia en SWI-Prolog...</p>
+      </div>
+      <div id="results" class="results-grid">
+        <p class="placeholder-text">Selecciona tus ingredientes y presiona el botón para consultar tus reglas en Prolog.</p>
+      </div>
+    </section>
 
-                <button class="text-button" id="clear-ingredients"
-                        type="button">
-                    Desmarcar todos
-                </button>
-            </div>
+  </main>
 
-            <div class="ingredient-grid" id="ingredients">
-
-                <label class="ingredient">
-                    <input type="checkbox" value="pollo">
-                    <span>🍗 Pollo</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="huevo">
-                    <span>🥚 Huevo</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="arroz">
-                    <span>🍚 Arroz</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="tomate">
-                    <span>🍅 Tomate</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="cebolla">
-                    <span>🧅 Cebolla</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="queso">
-                    <span>🧀 Queso</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="pasta">
-                    <span>🍝 Pasta</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="frijoles">
-                    <span>🫘 Frijoles</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="papa">
-                    <span>🥔 Papa</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="zanahoria">
-                    <span>🥕 Zanahoria</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="leche">
-                    <span>🥛 Leche</span>
-                </label>
-
-                <label class="ingredient">
-                    <input type="checkbox" value="tortilla">
-                    <span>🫓 Tortilla</span>
-                </label>
-
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="panel-heading">
-                <div>
-                    <h2>🥗 Restricciones alimentarias</h2>
-                    <p>Selecciona las que quieras respetar.</p>
-                </div>
-            </div>
-
-            <div class="restriction-grid" id="restrictions">
-
-                <label class="restriction">
-                    <input type="checkbox" value="vegetariano">
-                    <span>Vegetariano</span>
-                </label>
-
-                <label class="restriction">
-                    <input type="checkbox" value="sin_lactosa">
-                    <span>Sin lactosa</span>
-                </label>
-
-                <label class="restriction">
-                    <input type="checkbox" value="sin_gluten">
-                    <span>Sin gluten</span>
-                </label>
-
-                <label class="restriction">
-                    <input type="checkbox" value="sin_huevo">
-                    <span>Sin huevo</span>
-                </label>
-
-            </div>
-
-            <button class="primary-button" id="recommend" type="button">
-                ✨ Recomendar una receta
-            </button>
-
-            <p class="small-note">
-                Sistema experto de recetas basado en reglas de Prolog.
-            </p>
-        </section>
-
-        <section class="result panel" id="result" hidden>
-            <div class="result-icon">🍽️</div>
-
-            <div>
-                <h2 id="result-title">Tu recomendación</h2>
-                <p id="result-message"></p>
-                <ul id="result-details"></ul>
-            </div>
-        </section>
-
-        <section class="info-card" id="como-funciona">
-            <div class="info-symbol">♧</div>
-
-            <div>
-                <h2>¿Cómo funciona?</h2>
-                <p>
-                    El sistema recibe los ingredientes y las restricciones,
-                    consulta su base de conocimiento y aplica reglas lógicas
-                    para buscar recetas compatibles.
-                </p>
-            </div>
-        </section>
-
-        <footer>
-            Prolog Chef SE · Sistema experto de recetas de cocina
-        </footer>
-
-    </main>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
