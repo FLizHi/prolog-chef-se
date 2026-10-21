@@ -9,10 +9,10 @@ CORS(app)
 
 # Cargar la base de conocimientos existente
 BASE_DIR = Path(__file__).resolve().parent
-RUTA_PROLOG = BASE_DIR / "recetas.pl"
+RUTA_PROLOG = (BASE_DIR / "recetas.pl").as_posix()
 
 prolog = Prolog()
-prolog.consult(str(RUTA_PROLOG))
+prolog.consult(RUTA_PROLOG)
 
 
 @app.route("/api/consultar", methods=["POST"])
